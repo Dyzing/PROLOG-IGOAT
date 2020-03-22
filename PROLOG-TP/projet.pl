@@ -36,5 +36,6 @@ chemin(U,V,graphe(L),C) :-
 chemin_rec(_,_,[],[]).
 chemin_rec(_,_,[],_).
 chemin_rec(U,V,[sommet(U,[V|_])|_],[U,V]).
-chemin_rec(U,V,[sommet(X,[S|_UCC])|L],[X,S|L_]):-
-	chemin_rec(U,V,L,L_).
+chemin_rec(_U,V,[sommet(V,_)],[V|[]]).
+chemin_rec(U,V,[sommet(U,[S|_UCC])|L],[U,S|L_]):-
+	chemin_rec(S,V,L,L_).
