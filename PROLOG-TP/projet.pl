@@ -3,7 +3,7 @@ sommet(_S,[_F|_SUCC]).
 
 graphe([sommet(_S,[_F|_SUCC]) |_]).
 
-mon_graphe(graphe([sommet(a,[b,c]),sommet(b,[d,e]),sommet(c,[d,e]), sommet(e,[a,e]), sommet(d, [])])).
+mon_graphe(graphe([sommet(a,[b]),sommet(b,[e,c,f]),sommet(c,[d,g]),sommet(d,[c,h]),sommet(e,[a,f]),sommet(f,[g]),sommet(g,[f]),sommet(h,[d,g])])).
 
 %1
 graphe_vide([]).
@@ -37,5 +37,5 @@ chemin_rec(_,_,[],[]).
 chemin_rec(_,_,[],_).
 chemin_rec(U,V,[sommet(U,[V|_])|_],[U,V]).
 chemin_rec(_U,V,[sommet(V,_)],[V|[]]).
-chemin_rec(U,V,[sommet(U,[S|_UCC])|L],[U,S|L_]):-
-	chemin_rec(S,V,L,L_).
+chemin_rec(U,V,[sommet(U,[SUCC])|SUITE],[U,S|L_]):-
+	successeurs(U,graphe(_L),SUCC), member(S,SUCC), chemin_rec(S,V,SUITE,L_).
